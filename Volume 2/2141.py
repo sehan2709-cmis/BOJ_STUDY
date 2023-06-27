@@ -1,30 +1,20 @@
-def sort_key(x):
-  return x[0]
-
-
 n = int(input())
-X = []
-A = []
+whole = []
 half = 0
 
 for i in range(n):
-  userInput = list(map(int, input().split()))
-  X.append(userInput[0])
-  A.append(userInput[1])
-  half += userInput[1]
+  place, population = map(int, input().split())
+  whole.append([place, population])
+  half += population
 
-whole = list(zip(X, A))
-whole = sorted(whole, key=sort_key)
+whole.sort(key=lambda x: x[0])
 
 half = half / 2
-closest = 1000000001
+adding = 0
 index = 0
 
 while (1):
-  add = sum(whole[:index])
-  if (abs(half - add) < closest):
-    closest = abs(half - add)
-  else:
-    print(index - 1)
+  adding += whole[index][1]
+  if adding >= half:
+    print(whole[index][0])
     break
-  index += 1
