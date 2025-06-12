@@ -6,25 +6,25 @@
 
 방법 1.
 N개의 정수 받고 array에 넣기.
-for loop돌려서 찾기
+for loop돌려서 값 마다 answer+1
 
-방법2. 
-바이너리 서치를 활용하여
-que left, right 활용해서 찾기.
+하지만 파이썬에는 .count()라는 좋은 기능이 있다는 것을 확인.
 '''
 
 #방법 1
 N = int(input())
 inputs = list(map(int, input().split()))
 v = int(input())
+print(inputs.count(v)) #파이썬에 좋은 기능들을 잘 활용하자.
 
+'''
+answer = 0
 for i in range(N):
     if inputs[i] == v: #값 확인
-        print(i)
-        break
-    elif i == v-1: #원하는 값이 없을때
-        print(0)
-    
+        answer += 1
+print(answer)
+'''
+
 '''
 백준 10807번 개수 세기
 
