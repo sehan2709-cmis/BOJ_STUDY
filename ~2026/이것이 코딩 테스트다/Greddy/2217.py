@@ -26,25 +26,80 @@
     ropes.sort(reverse=True)
     print(ropes[0])
 
+    ---
     #다른 사람 제출 답안 1
+    #출처: https://hongcoding.tistory.com/26
+    n = int(input())
+    rope = []
+
+    for i in range(n):
+        rope.append(int(input()))
+    rope.sort(reverse=True)
+
+    for i in range(n):
+        rope[i] = rope[i] * (i+1)
+
+    print(max(rope))
+
+    생각 정리:
+        여기 에시는 구지 소팅을 한번더 하기 보다는 그냥 max()를 사용했다.
+        이걸 왜 생각을 못했을까... 일단 근데 방법은 크게 다르지 않다.
     
+    ---
     #다른 사람 제출 답안 2
+    #출처: https://star7sss.tistory.com/397
+
+    import sys
+    input = sys.stdin.readline
+
+    # 입력
+    N = int(input())
+    rope = []
+    for _ in range(N):
+        rope.append(int(input()))
+
+    # 내림차순 정렬
+    rope.sort(reverse=True)
+
+    # 그리디 알고리즘
+    res = 0
+    for k, w in enumerate(rope, 1):
+        res = max(res, w*k)
+    print(res)
+
+    생각 정리:
+        전체 적인 큰 그림은 크게 다르지 않다.
+        하지만 마지막에 첫번째 예시 혹은 나와는 다르게
+        내림차순으로 정리한 것과 for range보다는 "enumerate"를 사용한 걸 볼 수 있다.
+        구지 빼기를 추가하거나 추후에
 
     #"내 코드 vs 다른 사람" 배울 점은?
+    1. enumerate 쓰니까 인덱스 따로 안 더해도 되고 코드가 훨씬 직관적이라 편함.
+    2. 리스트에 다 채워놓고 max 돌리는 것보다 실시간으로 갱신하는 게 메모리도 아끼고 더 효과적임.
+      - 기존 방식처럼 모든 계산 결과를 리스트에 저장한 뒤 max()를 호출하면 리스트 크기만큼의 추가 메모리(공간 복잡도 O(N))가 필요
+      - 반면, 변수 하나(res)에 실시간으로 최댓값을 갱신(max(res, w*k))하면 추가 메모리 사용을 최소화(공간 복잡도 O(1))할 수 있어 대용량 데이터 처리 시 훨씬 효과적이라고 볼 수 있다.
+
+    3. 굳이 리스트 두 번 안 훑고 루프 한 번에 끝내는 법을 익히는 게 효과적.
 '''
-length = int(input())
-ropes = list()
-for i in range(length):
-    ropes.append(int(input()))
 
-ropes.sort()
-
-for i in range(length):
-    ropes[i] = ropes[i] * (length - i)
-
-ropes.sort(reverse=True)
-print(ropes[0])
 #다시 짠 코드
+import sys
+input = sys.stdin.readline
+
+###값 받기
+N = int(input())
+rope = []
+for i in range(N):
+    rope.append(int(input()))
+
+###내림차순 정렬
+rope.sort(reverse=True)
+
+###가장 큰 값 계산, enumerate 사용
+result = 0
+for index, elem in enumerate(rope, 1):
+    result = max(result, index*elem)
+print(result)
 
 '''
 로프 (그리디)
