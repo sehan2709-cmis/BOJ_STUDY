@@ -1,20 +1,3 @@
-'''
-내 코드 피드백:
-    1. 반복문 최적화: 
-        - 인덱스가 필요 없다면 'for char in N:' 형식이 더 가독성이 좋을지도
-
-    2. 예외 처리: 
-        - 숫자가 포함되지 않은 입력이 들어올 경우를 대비해 'if num != 0:' 조건을 고려
-    
-    3. 내장 함수 활용:
-        - x.isalpha(): 알파벳인지 확인
-        - x.isdigit(): 숫자인지 확인 (isnumeric()보다 일반적으로 더 많이 쓰임)
-    
-    4. 리스트 정렬:
-        - 새로운 리스트를 만들 필요가 없다면 words.sort()가 메모리 효율적
-'''
-
-# 1. 입력 받기
 data = input()
 result = []
 value = 0
@@ -22,21 +5,16 @@ has_digit = False  # 숫자가 한 번이라도 나왔는지 체크 (0만 여러
 
 # 2. 문자열을 순회하며 분리
 for x in data:
-    if x.isalpha():  # 알파벳인지 확인
+    if x.isalpha(): # 알파벳
         result.append(x)
-    else:            # 숫자인 경우
+    else: # 숫자
         value += int(x)
         has_digit = True
 
-# 3. 알파벳 오름차순 정렬
-result.sort()  # 별도의 리스트를 생성하지 않고 원본 리스트를 직접 정렬 (메모리 효율)
-
-# 4. 숫자가 하나라도 존재했다면 가장 뒤에 합계 추가
-if has_digit:
+result.sort() # 알파벳 오름차순 정렬
+if has_digit: # 숫자가 하나라도 존재했다면 가장 뒤에 합계 추가
     result.append(str(value))
-
-# 5. 최종 결과 출력 (리스트를 문자열로 합치기)
-print(''.join(result))
+print(''.join(result)) # 최종 결과 출력
 
 '''
 접근 법
